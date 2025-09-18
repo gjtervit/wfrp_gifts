@@ -1,20 +1,30 @@
-Config = {}
+Config = Config or {}
 
-Config.Gifts = { --{inventory itemname, amount}
-    --money item gives money to the players, other entries are items from inventory config. Make sure to have the itemconfig from below in the inventory2.0 config 
-    --MAKE SURE TO ADD YOUR OWN PERSONALIZED GIFTS TO CREATE UNIQUE EXPERIENCE
-    {"money",100},
-    {"money",20},
-    {"money",40},
-    {"money",60},
-    {"money",80},
-    {"money",120},
-    {"money",150},
-    {"golden_nugget",1},
-    {"woodlog",1},
-    {"WEAPON_REVOLVER_CATTLEMAN",20},-- for weapon, amount is ammo count
+-- UI
+Config.Title = "Wild Frontier Gifts"
+
+-- Framework: "vorp", "qbr", or "redemrp"
+Config.Framework = "vorp"
+
+-- Minutes of CONNECTED time required per gift
+Config.MinutesOnlinePerGift = 30
+
+Config.AFK = {
+    -- How long after the last ACTIVE heartbeat a player is still counted as "active" (seconds)
+    ActiveTimeoutSeconds = 90
 }
 
---Notification config:
-Config.Recieved = "You recieved some gift!"
-Config.Title = "Happy Holidays"
+-- Optional Discord logging (leave blank to disable; or set convar `setr wfrp_gifts_webhook "https://discord.com/api/webhooks/..."`)
+Config.DiscordWebhook = "https://discord.com/api/webhooks/..."
+Config.DiscordLogName = "Wild Frontier Gifts"
+
+-- Rewards
+-- { type="item", name="bread", count=1, notify="You received bread!" }
+-- { type="money", amount=5, notify="You found $5!" }
+
+Config.Gifts = {
+    { type="item", name="giftscase", count=1, notify="You received a gift case!" },
+    { type="item", name="raffle_ticket", count=2, notify="You received some raffle tickets!" },
+    --{ type="money", amount=5, notify="You found $5 in your satchel." },
+    -- add more as needed
+}
